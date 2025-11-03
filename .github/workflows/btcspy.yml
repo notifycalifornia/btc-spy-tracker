@@ -22,6 +22,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+        # Gradle cache to speed up and stabilize builds
+      - name: Setup Gradle cache
+        uses: gradle/gradle-build-action@v3
 
       - name: Cache npm
         uses: actions/cache@v4
@@ -31,13 +34,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
+      - name: Install dependencies (CI-clean)
         run: npm ci
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Ensure SDK components
+        run: |
+          sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses <<< "y"
+          sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;26.1.10909125"
+
+      # Some Expo packages log about NODE_ENV; set it to avoid noisy warnings
       - name: Generate native Android project (Expo prebuild)
+        env:
+          NODE_ENV: production
         run: npx expo prebuild --platform android --non-interactive
 
       - name: Build debug APK with Gradle
