@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Expo/React Native caches
+.expo/
+.expo-shared/
+
+# Android build outputs
+android/.gradle/
+android/.idea/
+android/app/build/
+android/build/
+
+# Xcode (if ever added)
+ios/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+
+# Local artifacts
+artifacts/
+
+

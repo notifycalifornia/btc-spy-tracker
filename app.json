@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "BTC SPY Tracker",
+    "slug": "btc-spy-tracker",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": null,
+    "splash": {
+      "image": null,
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.btcpytracker.app",
+      "adaptiveIcon": null
+    }
+  }
+}
+
+
