@@ -42,7 +42,9 @@ jobs:
 
       - name: Build debug APK with Gradle
         working-directory: android
-        run: ./gradlew assembleDebug --no-daemon
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
 
       - name: Collect APK
         run: |
